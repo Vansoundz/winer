@@ -1,0 +1,21 @@
+input,
+textarea {
+  border: 1px solid #f7f7f7;
+  padding: 8px;
+  width: 90%;
+}
+
+input:focus,
+textarea:focus {
+  border: 1px solid rgb(38, 199, 191);
+}
+
+.form-div {
+  margin: 8px;
+}
+
+.form-div button {
+  background: #f7f7f7;
+  padding: 4px 8px;
+  cursor: pointer;
+}

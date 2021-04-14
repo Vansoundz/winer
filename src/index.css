@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
+@import url("css/product.css");
+@import url("css/form.css");
+
+* {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  font-family: "Roboto Condensed", sans-serif;
+  box-shadow: none;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  color: #222;
+  transition: all 0.4s;
+}
+
+.container {
+  max-width: 90%;
+  width: 90%;
+  display: block;
+  margin: auto;
+}
+
+.show > div {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.brand {
+  margin: 16px auto 24px;
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.bg-grey {
+  background: #d8d8d8;
+}
+
+.bg-light-grey {
+  background: #f7f7f7;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.shopping {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  height: 138px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.tags,
+.order {
+  padding: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 300px;
+}
+
+.tag {
+  padding: 8px;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+.checkout,
+.empty-cart {
+  text-align: center;
+  padding: 8px;
+  margin: 8px;
+  cursor: pointer;
+  min-width: 70px;
+}
+
+.checkout {
+  background: #4d4d4d;
+}
+
+.checkout a {
+  color: #fff;
+}
+
+.empty-cart {
+  background: #d8d8d8;
+}
+
+.desktop {
+  display: block;
+}
+
+.mobile {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile {
+    display: block;
+  }
+  .desktop {
+    display: none;
+  }
+
+  .shopping {
+    grid-template-columns: 1fr 1fr;
+  }
+}
