@@ -1,9 +1,13 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Customer } from "../models/customer";
 import { saveCustomer } from "../store/slices/products";
 
-const Delivery = () => {
+type IProps = {
+  customer?: Customer;
+};
+
+const Delivery: FC<IProps> = ({ customer: info }) => {
   const [customer, setCustomer] = useState<Customer>({});
   const dispatch = useDispatch();
 
@@ -14,11 +18,18 @@ const Delivery = () => {
     });
   };
 
+  useEffect(() => {
+    if (info) setCustomer(info);
+  }, [info]);
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-
-    if (Object.keys(customer).length > 0) {
-      dispatch(saveCustomer(customer));
+    if (!info) {
+      if (Object.keys(customer).length > 0) {
+        dispatch(saveCustomer(customer));
+      }
+    } else {
+      alert("Order placedd successfully");
     }
   };
 
@@ -30,7 +41,12 @@ const Delivery = () => {
             <label htmlFor="name">Full name</label>
           </div>
           <div>
-            <input onChange={onChange} type="text" id="name" />
+            <input
+              value={customer.name || ""}
+              onChange={onChange}
+              type="text"
+              id="name"
+            />
           </div>
         </div>{" "}
         <div className="form-div">
@@ -38,7 +54,12 @@ const Delivery = () => {
             <label htmlFor="phone">Phone</label>
           </div>
           <div>
-            <input onChange={onChange} type="tel" id="phone" />
+            <input
+              value={customer.phone || ""}
+              onChange={onChange}
+              type="tel"
+              id="phone"
+            />
           </div>
         </div>{" "}
         <div className="form-div">
@@ -46,7 +67,12 @@ const Delivery = () => {
             <label htmlFor="estate">Estate</label>
           </div>
           <div>
-            <input onChange={onChange} type="text" id="estate" />
+            <input
+              value={customer.estate || ""}
+              onChange={onChange}
+              type="text"
+              id="estate"
+            />
           </div>
         </div>{" "}
         <div className="form-div">
@@ -54,7 +80,12 @@ const Delivery = () => {
             <label htmlFor="address">Address</label>
           </div>
           <div>
-            <input onChange={onChange} type="text" id="address" />
+            <input
+              value={customer.address || ""}
+              onChange={onChange}
+              type="text"
+              id="address"
+            />
           </div>
         </div>{" "}
         <div className="form-div">
@@ -62,7 +93,12 @@ const Delivery = () => {
             <label htmlFor="notes">Notes</label>
           </div>
           <div>
-            <textarea onChange={onChange} id="notes" rows={3}></textarea>
+            <textarea
+              value={customer.notes || ""}
+              onChange={onChange}
+              id="notes"
+              rows={3}
+            ></textarea>
           </div>
         </div>
         <div
@@ -72,7 +108,7 @@ const Delivery = () => {
             justifyContent: "center",
           }}
         >
-          <button>Save Info</button>
+          <button>{!info ? "Save Info" : "Checkout"}</button>
         </div>
       </form>
     </div>

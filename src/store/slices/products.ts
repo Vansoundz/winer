@@ -142,6 +142,7 @@ const getProduct = (state: RootState, no: string) =>
   state.product.products.find((w) => w.no === no);
 
 const getTags = (state: RootState) => state.product.tags;
+const getCustomer = (state: RootState) => state.product.customer;
 const getOrder = (state: RootState) => state.product.orderBy;
 const getCart = (state: RootState) => state.product.cart;
 const getSelectedTags = (state: RootState) => state.product.selectedtags;
@@ -177,4 +178,5 @@ export {
   getCart,
   getTotal,
   getBottles,
+  getCustomer,
 };

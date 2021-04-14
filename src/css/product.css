@@ -14,12 +14,14 @@
 
 .image {
   flex: 1;
-  height: 234px;
+  height: 290px;
+  display: flex;
 }
 
 .product img {
-  width: 100%;
+  width: 70%;
   height: 100%;
+  margin: auto;
 }
 
 .details {
