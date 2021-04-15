@@ -1,10 +1,15 @@
 import React, { FC, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Delivery from "../components/Delivery";
 import { Product } from "../models/product";
 import paths from "../routes/paths";
-import { getCart, getCustomer } from "../store/slices/products";
+import {
+  addToCart,
+  getCart,
+  getCustomer,
+  remove,
+} from "../store/slices/products";
 
 const Checkout = () => {
   const cart = useSelector(getCart);
@@ -24,7 +29,7 @@ const Checkout = () => {
           <div
             className="container"
             style={{
-              maxWidth: "300px",
+              maxWidth: "340px",
               margin: "24px auto",
             }}
           >
@@ -73,35 +78,76 @@ const Checkout = () => {
 export default Checkout;
 
 const Cart: FC<{ cart: Product[] }> = ({ cart }) => {
+  const dispatch = useDispatch();
+
   return (
-    <div className="cart">
-      {cart.map((prod) => {
-        const { cost, name, no, checked } = prod;
-        return (
-          <div key={no + Math.random()} className="item flex">
-            <div>
-              <div>{name}</div>
-              <div>
-                {checked?.map((el) => (
-                  <div key={Math.random()} className="tag">
-                    {el}
+    <>
+      <div className="back">
+        <Link to={paths.index}>All Products</Link>
+      </div>
+      <table className="cart" cellSpacing={8}>
+        <thead>
+          <tr className="item">
+            <th>#</th>
+            <th>Name</th>
+            <th>Selection</th>
+            <th>Cost</th>
+            <th>Add</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {cart.map((prod, i) => {
+            const { cost, name, no, checked } = prod;
+            return (
+              <tr key={no + Math.random()} className="item">
+                <td>{i + 1}</td>
+                <td>{name}</td>
+                <td style={{ display: "flex", flexWrap: "wrap" }}>
+                  {checked?.includes("case") && <span>case</span>}
+                  <span>
+                    {checked?.length == 2 ? <span>,</span> : <span></span>}
+                  </span>
+                  {checked?.includes("bottle") && <span>bottle</span>}
+                </td>
+                <td>
+                  <div>
+                    {(checked?.includes("case") ? cost.case : 0) +
+                      (checked?.includes("bottle") ? cost.bottle : 0)}
                   </div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <div>
-                {checked?.includes("case") && <div>case: ${cost.case}</div>}
-              </div>{" "}
-              <div>
-                {checked?.includes("bottle") && (
-                  <div>bottle: ${cost.bottle}</div>
-                )}
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
+                </td>
+                <td>
+                  <span
+                    style={{
+                      padding: "0 8px",
+                      background: "#d7d7d7",
+                      margin: 4,
+                    }}
+                    className="pointer"
+                    onClick={() => dispatch(addToCart(prod))}
+                  >
+                    +
+                  </span>
+                </td>
+                <td>
+                  <span
+                    style={{
+                      padding: "0 8px",
+                      background: "#d7d7d7",
+                      margin: 4,
+                    }}
+                    className="pointer"
+                    onClick={() => dispatch(remove(prod.id))}
+                  >
+                    -
+                  </span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </>
   );
 };

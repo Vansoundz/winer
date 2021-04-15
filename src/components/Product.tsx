@@ -39,14 +39,7 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
           }}
           className="prices flex"
         >
-          <div
-            className="price"
-            style={{
-              borderRight: "1px solid #ddd",
-              marginRight: "8px",
-              paddingRight: "8px",
-            }}
-          >
+          <div className="price">
             <div>Bottle</div>
             <div>${bottle}</div>
             <div>

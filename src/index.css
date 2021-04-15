@@ -64,6 +64,26 @@
   cursor: pointer;
 }
 
+.filters {
+  margin: auto;
+}
+
+button {
+  padding: 8px;
+  margin: 8px 4px;
+  background: #4d4d4d;
+  color: #fff;
+  cursor: pointer;
+}
+
+.back {
+  margin: 8px 0;
+  padding: 8px;
+  max-width: 100px;
+  background: #f7f7f7;
+  text-align: center;
+}
+
 .shopping {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

@@ -92,7 +92,7 @@ const Header = () => {
         </div>
 
         <Modal open={open} close={() => setOpen(!open)}>
-          <Delivery />
+          <Delivery close={() => setOpen(!open)} />
         </Modal>
 
         <div className="desktop">

@@ -94,7 +94,15 @@ export const productSlice = createSlice({
       if (!product) {
         return;
       }
+      product.id = Math.random().toString();
       cart = [...cart, product];
+      state.cart = cart;
+    },
+    remove: (state, action: PayloadAction<string>) => {
+      let { cart } = state;
+
+      cart = cart.filter(({ id }) => id !== action.payload);
+
       state.cart = cart;
     },
     clearCart: (state) => {
@@ -111,6 +119,7 @@ export const {
   clearCart,
   saveCustomer,
   checkType,
+  remove,
 } = productSlice.actions;
 
 export default productSlice.reducer;

@@ -5,9 +5,10 @@ import { saveCustomer } from "../store/slices/products";
 
 type IProps = {
   customer?: Customer;
+  close?: () => void;
 };
 
-const Delivery: FC<IProps> = ({ customer: info }) => {
+const Delivery: FC<IProps> = ({ customer: info, close }) => {
   const [customer, setCustomer] = useState<Customer>({});
   const dispatch = useDispatch();
 
@@ -27,9 +28,10 @@ const Delivery: FC<IProps> = ({ customer: info }) => {
     if (!info) {
       if (Object.keys(customer).length > 0) {
         dispatch(saveCustomer(customer));
+        if (close) close();
       }
     } else {
-      alert("Order placedd successfully");
+      alert("Order placed successfully");
     }
   };
 
@@ -42,6 +44,7 @@ const Delivery: FC<IProps> = ({ customer: info }) => {
           </div>
           <div>
             <input
+              required
               value={customer.name || ""}
               onChange={onChange}
               type="text"
@@ -55,6 +58,7 @@ const Delivery: FC<IProps> = ({ customer: info }) => {
           </div>
           <div>
             <input
+              required
               value={customer.phone || ""}
               onChange={onChange}
               type="tel"
@@ -68,6 +72,7 @@ const Delivery: FC<IProps> = ({ customer: info }) => {
           </div>
           <div>
             <input
+              required
               value={customer.estate || ""}
               onChange={onChange}
               type="text"
@@ -81,6 +86,7 @@ const Delivery: FC<IProps> = ({ customer: info }) => {
           </div>
           <div>
             <input
+              required
               value={customer.address || ""}
               onChange={onChange}
               type="text"

@@ -13,18 +13,10 @@ const Product = () => {
 
   return product ? (
     <div className="container">
-      <div
-        style={{
-          margin: "8px 0",
-          padding: "8px",
-          maxWidth: "100px",
-          background: "#f7f7f7",
-          textAlign: "center",
-        }}
-      >
+      <div className="back">
         <Link to={paths.index}>All Products</Link>
       </div>
-      <div className="product">
+      <div className="product" style={{ maxHeight: "unset" }}>
         <div className="image">
           <img
             src={`${import.meta.env.VITE_URL}/wineshop-assets/wine-bottles/${
